@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CustomFizzBuzz/bin/Debug/net8.0
+/CustomFizzBuzz/obj
+/StandardFizzBuzz/bin/Debug/net8.0
+/StandardFizzBuzz/obj
+/TwistedFizzBuzz/obj
+/TwistedFizzBuzz/bin/Debug/net8.0
+/TwistedFizzBuzz/.vs/TwistedFizzBuzz
