@@ -21,3 +21,6 @@
 /TwistedFizzBuzz (ConsoleApp2)/.vs
 /TwistedFizzBuzz (ConsoleApp2)/bin/Debug/net8.0
 /TwistedFizzBuzz (ConsoleApp2)/obj
+/.vs
+/CustomFizzBuzz (ConsoleApp2)/bin/Debug/net8.0
+/CustomFizzBuzz (ConsoleApp2)/obj

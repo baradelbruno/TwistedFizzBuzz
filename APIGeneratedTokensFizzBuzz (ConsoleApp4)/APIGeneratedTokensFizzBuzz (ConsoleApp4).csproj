@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TwistedFizzBuzz (ConsoleApp2)\TwistedFizzBuzzLibrary.csproj" />
+    <ProjectReference Include="..\TwistedFizzBuzz\TwistedFizzBuzzLibrary.csproj" />
   </ItemGroup>
 
 </Project>
