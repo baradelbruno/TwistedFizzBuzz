@@ -9,15 +9,8 @@ public class Program
 	{
 		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
-		var customTokenMap = new Dictionary<string, int>
-		{
-			{ "Fizz", 5 },
-			{ "Buzz", 9 },
-			{ "Bar", 27 }
-		};
-
-		fizzBuzz.UpdateTokenMap(customTokenMap);
-		var result = fizzBuzz.Execute(-20, 127);
+		List<int> ints = [-5, 6, 300, 12, 25];
+		var result = fizzBuzz.Execute(ints);
 
 		foreach (var res in result)
 		{
@@ -25,3 +18,5 @@ public class Program
 		}
 	}
 }
+
+

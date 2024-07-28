@@ -5,18 +5,13 @@ namespace TwistedFizzBuzzNamespace;
 
 public class Program
 {
-	public static void Main()
+	public static async Task Main()
 	{
 		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
-		var customTokenMap = new Dictionary<string, int>
-		{
-			{ "Fizz", 5 },
-			{ "Buzz", 9 },
-			{ "Bar", 27 }
-		};
+		//Mocked API call to update token map
+		await fizzBuzz.GetAPIGeneratedTokens();
 
-		fizzBuzz.UpdateTokenMap(customTokenMap);
 		var result = fizzBuzz.Execute(-20, 127);
 
 		foreach (var res in result)

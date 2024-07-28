@@ -1,4 +1,5 @@
 ﻿using TwistedFizzBuzzLibrary;
+using TwistedFizzBuzzLibrary.Interface;
 
 namespace TwistedFizzBuzzNamespace;
 
@@ -6,8 +7,9 @@ public class Program
 {
 	public static void Main()
 	{
-		TwistedFizzBuzz fizzBuzz = new();
-		var result = fizzBuzz.ConvertToFizzBuzz(1, 100);
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+
+		var result = fizzBuzz.Execute(1, 100);
 
 		foreach(var res in result)
 		{
