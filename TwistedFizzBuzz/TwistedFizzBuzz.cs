@@ -23,11 +23,11 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 		return Execute(input);
 	}
 
-	public List<string> Execute(List<int> input)
+	public List<string> Execute(List<int> inputList)
 	{
 		List<string> convertedResults = [];
 
-		foreach(var i in input)
+		foreach(var i in inputList)
 		{
 			StringBuilder result = new();
 
