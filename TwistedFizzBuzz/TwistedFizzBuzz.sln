@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonSequentialInputFizzBuzz 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGeneratedTokensFizzBuzz (ConsoleApp4)", "..\APIGeneratedTokensFizzBuzz (ConsoleApp4)\APIGeneratedTokensFizzBuzz (ConsoleApp4).csproj", "{A2A72D56-D751-4C6C-AA19-9DFC3B971B1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwistedFizzBuzzLibraryTests", "..\TwistedFizzBuzzLibraryTests\TwistedFizzBuzzLibraryTests.csproj", "{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0BCC328A-B102-4AB9-B28B-F36CF0612998}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleApps", "ConsoleApps", "{885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{888EA137-31EA-421D-B65E-88C7D5DF7A86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +47,21 @@ Global
 		{A2A72D56-D751-4C6C-AA19-9DFC3B971B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2A72D56-D751-4C6C-AA19-9DFC3B971B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2A72D56-D751-4C6C-AA19-9DFC3B971B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A6F4980-9649-43AD-9321-8C0858526C1C} = {888EA137-31EA-421D-B65E-88C7D5DF7A86}
+		{F5D743F7-3A33-493E-BBE0-91D4E126ECE4} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
+		{029989CC-C244-4C17-A3E8-AEF2FAE736CD} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
+		{832B35AE-8CC2-49B2-9085-EED35AA5AF97} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
+		{A2A72D56-D751-4C6C-AA19-9DFC3B971B1A} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
+		{D61711AA-7CC0-4CF7-87F0-25EA57F8DA54} = {0BCC328A-B102-4AB9-B28B-F36CF0612998}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1A9969B-94C7-4872-8198-E6CDCA3EB497}

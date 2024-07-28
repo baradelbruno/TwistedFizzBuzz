@@ -45,24 +45,45 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 		TokenMap = tokenMap;
 	}
 
-	public async Task GetAPIGeneratedTokens()
+	public async Task UpdateTokenMapWithAPIGeneratedData()
 	{
-		using HttpClient client = new();
-
 		try
 		{
-			//TODO: Replace URL to https://rich-red-cocoon-veil.cyclic.app/ after API fix.
-			Dictionary<string, int>? retrievedTokens = await client.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5150/api/MockToken");
-
+			Dictionary<string, int>? retrievedTokens = await GetAPITokens();
 			if (retrievedTokens is not null)
 			{
 				UpdateTokenMap(retrievedTokens);
 			}
 			else
 			{
+				Console.WriteLine("No data found.");
+
+			}
+		}
+		catch (Exception)
+		{
+			throw;
+		}
+	}
+
+	private static async Task<Dictionary<string, int>> GetAPITokens()
+	{
+		using HttpClient client = new();
+		try
+		{
+			//TODO: Replace URL to https://rich-red-cocoon-veil.cyclic.app/ after API fix.
+			Dictionary<string, int>? retrievedTokens = await client.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5150/api/MockToken");
+
+			if (retrievedTokens is not null && retrievedTokens.Count > 0)
+			{
+				return retrievedTokens;
+			}
+			else
+			{
 				throw new Exception("No data found.");
 			}
 		}
+		
 		catch (HttpRequestException e)
 		{
 			Console.WriteLine($"Request error: {e.Message}");
@@ -78,7 +99,7 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 			Console.WriteLine($"Unexpected Error: {e.Message}");
 			throw;
 		}
-    }
+	}
 
 	private static List<int> GenerateRange(int start, int end)
 	{
@@ -101,5 +122,4 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 
 		return result;
 	}
-
 }

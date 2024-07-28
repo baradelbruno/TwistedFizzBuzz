@@ -9,8 +9,8 @@ public class Program
 	{
 		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
-		List<int> ints = [-5, 6, 300, 12, 25];
-		var result = fizzBuzz.Execute(ints);
+		List<int> nonSequentialInput = [-5, 6, 300, 12, 25];
+		var result = fizzBuzz.Execute(nonSequentialInput);
 
 		foreach (var res in result)
 		{

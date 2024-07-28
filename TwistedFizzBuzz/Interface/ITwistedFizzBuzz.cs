@@ -5,5 +5,5 @@ public interface ITwistedFizzBuzz
 	List<string> Execute(int start, int end);
 	List<string> Execute(List<int> input);
 	void UpdateTokenMap(Dictionary<string, int> tokenMap);
-	Task GetAPIGeneratedTokens();
+	Task UpdateTokenMapWithAPIGeneratedData();
 }

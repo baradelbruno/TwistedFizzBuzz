@@ -10,13 +10,19 @@ public class Program
 		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
 		//Mocked API call to update token map
-		await fizzBuzz.GetAPIGeneratedTokens();
+		try { 
+			await fizzBuzz.UpdateTokenMapWithAPIGeneratedData();
 
-		var result = fizzBuzz.Execute(-20, 127);
+			var result = fizzBuzz.Execute(-20, 127);
 
-		foreach (var res in result)
+			foreach (var res in result)
+			{
+				Console.WriteLine(res);
+			}
+		}
+		catch (Exception) 
 		{
-			Console.WriteLine(res);
+			Console.WriteLine("Error while trying to get tokens from API");
 		}
 	}
 }
