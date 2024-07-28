@@ -92,4 +92,55 @@ public class TwistedFizzBuzzTests
 		//Assert
 		Assert.Empty(result);
 	}
+
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMap")]
+	public void UpdateTokenMap_GivenValidInput_UpdateTokenMapSuccessfully()
+	{
+		//Arrange
+		var newTokenMap = new Dictionary<string, int>
+		{
+			{ "token1", 2 },
+			{ "token2", 4 }
+		};
+
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+
+		//Act
+		fizzBuzz.UpdateTokenMap(newTokenMap);
+
+		//Assert
+		Assert.Equal(newTokenMap, fizzBuzz.GetTokenMap());
+	}
+
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMap")]
+	public void UpdateTokenMap_GivenEmptyInput_ThrowException()
+	{
+		//Arrange
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+
+		//Act & Assert
+		Assert.Throws<ArgumentException>(() => fizzBuzz.UpdateTokenMap(null!));
+	}
+
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMap")]
+	public void UpdateTokenMap_GivenZeroAsDivisor_ThrowException()
+	{
+		//Arrange
+		var newTokenMap = new Dictionary<string, int>
+		{
+			{ "token1", 0 },
+			{ "token2", 4 }
+		};
+
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+
+		//Act & Assert
+		Assert.Throws<ArgumentException>(() => fizzBuzz.UpdateTokenMap(newTokenMap));
+	}
+
+
+	//TODO: Add API tests after correction of API endpoint
 }

@@ -6,7 +6,12 @@ namespace TwistedFizzBuzzLibrary;
 
 internal class TwistedFizzBuzz : ITwistedFizzBuzz
 {
-	private Dictionary<string, int> TokenMap { get; set; } = new Dictionary<string, int>
+	private static readonly HttpClient _httpClient = new()
+	{
+		Timeout = TimeSpan.FromSeconds(30)
+	};
+
+	private readonly Dictionary<string, int> _tokenMap = new()
 	{
 		{ "Fizz", 3 },
 		{ "Buzz", 5 }
@@ -26,7 +31,7 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 		{
 			StringBuilder result = new();
 
-			foreach (var token in TokenMap)
+			foreach (var token in _tokenMap)
 			{
 				if (i % token.Value == 0)
 				{
@@ -42,7 +47,29 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 
 	public void UpdateTokenMap(Dictionary<string, int> tokenMap)
 	{
-		TokenMap = tokenMap;
+		if (tokenMap is null || tokenMap.Count == 0)
+		{
+			throw new ArgumentException("Token map cannot be null or empty.");
+		}
+
+		foreach (var token in tokenMap)
+		{
+			if (token.Value == 0)
+			{
+				throw new ArgumentException($"Token value cannot be zero.");
+			}
+		}
+
+		_tokenMap.Clear();
+		foreach (var item in tokenMap)
+		{
+			_tokenMap[item.Key] = item.Value;
+		}
+	}
+
+	public IReadOnlyDictionary<string, int> GetTokenMap()
+	{
+		return _tokenMap;
 	}
 
 	public async Task UpdateTokenMapWithAPIGeneratedData()
@@ -50,38 +77,28 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 		try
 		{
 			Dictionary<string, int>? retrievedTokens = await GetAPITokens();
-			if (retrievedTokens is not null)
-			{
-				UpdateTokenMap(retrievedTokens);
-			}
-			else
-			{
-				Console.WriteLine("No data found.");
-
-			}
+			UpdateTokenMap(retrievedTokens);
 		}
-		catch (Exception)
+		catch (Exception ex)
 		{
+			Console.WriteLine($"Error updating token map with API Generated Data: {ex.Message}");
 			throw;
 		}
 	}
 
 	private static async Task<Dictionary<string, int>> GetAPITokens()
 	{
-		using HttpClient client = new();
 		try
 		{
 			//TODO: Replace URL to https://rich-red-cocoon-veil.cyclic.app/ after API fix.
-			Dictionary<string, int>? retrievedTokens = await client.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5150/api/MockToken");
+			Dictionary<string, int>? retrievedTokens = await _httpClient.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5150/api/MockToken");
 
 			if (retrievedTokens is not null && retrievedTokens.Count > 0)
 			{
 				return retrievedTokens;
 			}
-			else
-			{
-				throw new Exception("No data found.");
-			}
+
+			throw new Exception("No data found.");
 		}
 		
 		catch (HttpRequestException e)

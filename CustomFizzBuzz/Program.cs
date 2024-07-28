@@ -16,12 +16,20 @@ public class Program
 			{ "Bar", 27 }
 		};
 
-		fizzBuzz.UpdateTokenMap(customTokenMap);
-		var result = fizzBuzz.Execute(-20, 127);
-
-		foreach (var res in result)
+		try
 		{
-			Console.WriteLine(res);
+			fizzBuzz.UpdateTokenMap(customTokenMap);
+
+			var result = fizzBuzz.Execute(-20, 127);
+
+			foreach (var res in result)
+			{
+				Console.WriteLine(res);
+			}
+		}
+		catch(Exception ex)
+		{
+			Console.WriteLine(ex.Message);
 		}
 	}
 }

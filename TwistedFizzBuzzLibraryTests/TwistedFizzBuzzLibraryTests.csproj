@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TwistedFizzBuzz\TwistedFizzBuzzLibrary.csproj" />
+    <ProjectReference Include="..\TwistedFizzBuzz (ConsoleApp2)\TwistedFizzBuzzLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
