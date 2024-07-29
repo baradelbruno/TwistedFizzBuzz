@@ -65,13 +65,14 @@ public static void Main()
 
 ## Execution Guide
 1. Clone the Repository: git clone https://github.com/baradelbruno/TwistedFizzBuzz.git
-2. Inside Visual Studio, select Configure Startup Projects as shown below:
+2. Open Visual Studio
+3. select Configure Startup Projects as shown below:
 ![alt text](Assets/image.png)
-3. For StandardFizzBuzz, CustomFizzBuzz and NonSequentialInputFizzBuzz, select the project at the Single Startup Project selector:
+4. For StandardFizzBuzz, CustomFizzBuzz and NonSequentialInputFizzBuzz, select the project at the Single Startup Project selector:
 ![alt text](Assets/image-1.png)
-4. For the APIGeneratedTokensFizzBuzz project, the API also needs to be running and listening. Is this case, select the Multiple Startup Projects and configure it as shown:
+5. For the APIGeneratedTokensFizzBuzz project, the API also needs to be running and listening. Is this case, select the Multiple Startup Projects and configure it as shown:
 ![alt text](Assets/image-2.png)
-5. Click on Start:
+6. Click on Start:
 ![alt text](Assets/image-3.png)
 
 ## Test Project
