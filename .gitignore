@@ -1,0 +1,29 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CustomFizzBuzz/bin/Debug/net8.0
+/CustomFizzBuzz/obj
+/StandardFizzBuzz/bin/Debug/net8.0
+/StandardFizzBuzz/obj
+/TwistedFizzBuzz/obj
+/TwistedFizzBuzz/bin/Debug/net8.0
+/TwistedFizzBuzz/.vs/TwistedFizzBuzz
+/AlternativeTokensFizzBuzz (ConsoleApp3)/bin/Debug/net8.0
+/AlternativeTokensFizzBuzz (ConsoleApp3)/obj
+/APIGeneratedTokensFizzBuzz (ConsoleApp4)/obj
+/APIGeneratedTokensFizzBuzz (ConsoleApp4)/bin/Debug/net8.0
+/TwistedFizzBuzzLibraryTests/bin/Debug/net8.0
+/TwistedFizzBuzzLibraryTests/obj
+/StandardFizzBuzz (ConsoleApp1)/bin/Debug/net8.0
+/StandardFizzBuzz (ConsoleApp1)/obj/Debug/net8.0
+/StandardFizzBuzz (ConsoleApp1)/obj
+/TwistedFizzBuzz (ConsoleApp2)/.vs
+/TwistedFizzBuzz (ConsoleApp2)/bin/Debug/net8.0
+/TwistedFizzBuzz (ConsoleApp2)/obj
+/.vs
+/CustomFizzBuzz (ConsoleApp2)/bin/Debug/net8.0
+/CustomFizzBuzz (ConsoleApp2)/obj
+/FizzBuzzTokenAPI/bin/Debug/net8.0
+/FizzBuzzTokenAPI/obj/Debug/net8.0
+/FizzBuzzTokenAPI/obj
