@@ -67,15 +67,23 @@ public static void Main()
 1. Clone the Repository: git clone https://github.com/baradelbruno/TwistedFizzBuzz.git
 2. Open Visual Studio
 3. select Configure Startup Projects as shown below:
+   
 ![alt text](Assets/image.png)
-4. For StandardFizzBuzz, CustomFizzBuzz and NonSequentialInputFizzBuzz, select the project at the Single Startup Project selector:
+
+5. For StandardFizzBuzz, CustomFizzBuzz and NonSequentialInputFizzBuzz, select the project at the Single Startup Project selector:
+   
 ![alt text](Assets/image-1.png)
-5. For the APIGeneratedTokensFizzBuzz project, the API also needs to be running and listening. Is this case, select the Multiple Startup Projects and configure it as shown:
+
+7. For the APIGeneratedTokensFizzBuzz project, the API also needs to be running and listening. Is this case, select the Multiple Startup Projects and configure it as shown:
+   
 ![alt text](Assets/image-2.png)
-6. Click on Start:
+
+9. Click on Start:
+    
 ![alt text](Assets/image-3.png)
 
 ## Test Project
 The library tests were developed using XUnit and can be found in the **TwistedFizzBuzzLibraryTests** project. Unit tests were developed for all public methods of the library, as well as for its Factory.
-To execute all tests, select Test -> Run All Tests in Visual Studio, as shown below:
+To execute all tests, select Test -> Run All Tests in Visual Studio, as shown below:  
+
 ![alt text](Assets/image-4.png)
