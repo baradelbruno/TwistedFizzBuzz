@@ -9,7 +9,6 @@ public class Program
 	{
 		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
-		//Mocked API call to update token map
 		try { 
 			await fizzBuzz.UpdateTokenMapWithAPIGeneratedData();
 

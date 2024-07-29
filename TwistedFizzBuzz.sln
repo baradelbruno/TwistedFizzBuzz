@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonSequentialInputFizzBuzz 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGeneratedTokensFizzBuzz (ConsoleApp4)", "APIGeneratedTokensFizzBuzz (ConsoleApp4)\APIGeneratedTokensFizzBuzz (ConsoleApp4).csproj", "{664AEC2B-0D27-446E-9A0C-0C43A2A5CCFD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{445DAFC4-0207-458F-B954-7EDEC4896779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzTokenAPI", "FizzBuzzTokenAPI\FizzBuzzTokenAPI.csproj", "{A76E6A59-F1E2-453C-B0C0-7E733E9551EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{664AEC2B-0D27-446E-9A0C-0C43A2A5CCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{664AEC2B-0D27-446E-9A0C-0C43A2A5CCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{664AEC2B-0D27-446E-9A0C-0C43A2A5CCFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76E6A59-F1E2-453C-B0C0-7E733E9551EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76E6A59-F1E2-453C-B0C0-7E733E9551EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76E6A59-F1E2-453C-B0C0-7E733E9551EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76E6A59-F1E2-453C-B0C0-7E733E9551EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 		{A712773E-D22A-4A89-B385-31F1DBD416FA} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
 		{83C7073F-FD71-4779-B6FE-2A1ADC843024} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
 		{664AEC2B-0D27-446E-9A0C-0C43A2A5CCFD} = {885745B5-EF7E-4563-9FAA-17F5AAA5F6BD}
+		{A76E6A59-F1E2-453C-B0C0-7E733E9551EF} = {445DAFC4-0207-458F-B954-7EDEC4896779}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1A9969B-94C7-4872-8198-E6CDCA3EB497}

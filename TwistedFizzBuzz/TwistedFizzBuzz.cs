@@ -4,13 +4,10 @@ using TwistedFizzBuzzLibrary.Interface;
 
 namespace TwistedFizzBuzzLibrary;
 
-internal class TwistedFizzBuzz : ITwistedFizzBuzz
+internal class TwistedFizzBuzz(HttpClient httpClient) : ITwistedFizzBuzz
 {
-	private static readonly HttpClient _httpClient = new()
-	{
-		Timeout = TimeSpan.FromSeconds(30)
-	};
 
+	private readonly HttpClient _httpClient = httpClient;
 	private readonly Dictionary<string, int> _tokenMap = new()
 	{
 		{ "Fizz", 3 },
@@ -76,7 +73,7 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 	{
 		try
 		{
-			Dictionary<string, int>? retrievedTokens = await GetAPITokens();
+			Dictionary<string, int>? retrievedTokens = await GetAPITokensAsync();
 			UpdateTokenMap(retrievedTokens);
 		}
 		catch (Exception ex)
@@ -86,12 +83,12 @@ internal class TwistedFizzBuzz : ITwistedFizzBuzz
 		}
 	}
 
-	private static async Task<Dictionary<string, int>> GetAPITokens()
+	private async Task<Dictionary<string, int>> GetAPITokensAsync()
 	{
 		try
 		{
-			//TODO: Replace URL to https://rich-red-cocoon-veil.cyclic.app/ after API fix.
-			Dictionary<string, int>? retrievedTokens = await _httpClient.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5150/api/MockToken");
+			//Calling my own API since the given API is not accessible. You can find the API implementation at API/FizzBuzzTokenAPI.
+			Dictionary<string, int>? retrievedTokens = await _httpClient.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5096/api/Tokens");
 
 			if (retrievedTokens is not null && retrievedTokens.Count > 0)
 			{

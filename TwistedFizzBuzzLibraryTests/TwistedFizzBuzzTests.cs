@@ -1,3 +1,8 @@
+using Moq;
+using Moq.Protected;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using TwistedFizzBuzzLibrary;
 using TwistedFizzBuzzLibrary.Interface;
 
@@ -10,8 +15,7 @@ public class TwistedFizzBuzzTests
 	public void Execute_GivenStartAndEndNumbers_Success()
 	{
 		//Arrange
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		int start = 1, end = 100;
 		List<string> expectedResult =
 		[
@@ -28,7 +32,7 @@ public class TwistedFizzBuzzTests
 		];
 
 		//Act
-		var result = fizzBuzz.Execute(start, end);
+		var result = _fizzBuzz.Execute(start, end);
 
 		//Assert
 		Assert.NotEmpty(result);
@@ -42,13 +46,12 @@ public class TwistedFizzBuzzTests
 	public void Execute_GivenSameStartAndEndNumbers_Success()
 	{
 		//Arrange
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		int start = 1, end = 1;
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
 		List<string> expectedResult = [ "1" ];
 
 		//Act
-		var result = fizzBuzz.Execute(start, end);
+		var result = _fizzBuzz.Execute(start, end);
 
 		//Assert
 		Assert.NotEmpty(result);
@@ -62,13 +65,12 @@ public class TwistedFizzBuzzTests
 	public void Execute_GivenNonSequentialInput_Success()
 	{
 		//Arrange
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		List<int> NonSequentialInput = [-5, 6, 300, 12, 25];
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
 		List<string> expectedResult = [ "Buzz", "Fizz", "FizzBuzz", "Fizz","Buzz" ];
 
 		//Act
-		var result = fizzBuzz.Execute(NonSequentialInput);
+		var result = _fizzBuzz.Execute(NonSequentialInput);
 
 		//Assert
 		Assert.NotEmpty(result);
@@ -82,12 +84,11 @@ public class TwistedFizzBuzzTests
 	public void Execute_GivenEmptyList_ReturnEmptyResult()
 	{
 		//Arrange
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		List<int> emptyList = [];
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
 
 		//Act
-		var result = fizzBuzz.Execute(emptyList);
+		var result = _fizzBuzz.Execute(emptyList);
 
 		//Assert
 		Assert.Empty(result);
@@ -98,19 +99,18 @@ public class TwistedFizzBuzzTests
 	public void UpdateTokenMap_GivenValidInput_UpdateTokenMapSuccessfully()
 	{
 		//Arrange
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		var newTokenMap = new Dictionary<string, int>
 		{
 			{ "token1", 2 },
 			{ "token2", 4 }
 		};
 
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
 		//Act
-		fizzBuzz.UpdateTokenMap(newTokenMap);
+		_fizzBuzz.UpdateTokenMap(newTokenMap);
 
 		//Assert
-		Assert.Equal(newTokenMap, fizzBuzz.GetTokenMap());
+		Assert.Equal(newTokenMap, _fizzBuzz.GetTokenMap());
 	}
 
 	[Fact]
@@ -118,10 +118,10 @@ public class TwistedFizzBuzzTests
 	public void UpdateTokenMap_GivenEmptyInput_ThrowException()
 	{
 		//Arrange
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 
 		//Act & Assert
-		Assert.Throws<ArgumentException>(() => fizzBuzz.UpdateTokenMap(null!));
+		Assert.Throws<ArgumentException>(() => _fizzBuzz.UpdateTokenMap(null!));
 	}
 
 	[Fact]
@@ -129,18 +129,118 @@ public class TwistedFizzBuzzTests
 	public void UpdateTokenMap_GivenZeroAsDivisor_ThrowException()
 	{
 		//Arrange
+		ITwistedFizzBuzz _fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
 		var newTokenMap = new Dictionary<string, int>
 		{
 			{ "token1", 0 },
 			{ "token2", 4 }
 		};
 
-		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-
 		//Act & Assert
-		Assert.Throws<ArgumentException>(() => fizzBuzz.UpdateTokenMap(newTokenMap));
+		Assert.Throws<ArgumentException>(() => _fizzBuzz.UpdateTokenMap(newTokenMap));
 	}
 
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMapWithAPIGeneratedData")]
+	public async Task UpdateTokenMapWithAPIGeneratedData_SuccessfullyUpdatesTokenMap()
+	{
+		// Arrange
+		var mockTokens = new Dictionary<string, int> { 
+			{ "token1", 1 }, 
+			{ "token2", 2 } 
+		};
 
-	//TODO: Add API tests after correction of API endpoint
+		var mockHandler = new Mock<HttpMessageHandler>();
+
+		mockHandler
+			.Protected()
+			.Setup<Task<HttpResponseMessage>>(
+				"SendAsync",
+				ItExpr.IsAny<HttpRequestMessage>(),
+				ItExpr.IsAny<CancellationToken>()
+			)
+			.ReturnsAsync(new HttpResponseMessage
+			{
+				StatusCode = HttpStatusCode.OK,
+				Content = new StringContent("{\"token1\": 1, \"token2\": 2}")
+				{
+					Headers = { ContentType = new MediaTypeHeaderValue("application/json") }
+				}
+			});
+
+		var httpClient = new HttpClient(mockHandler.Object)
+		{
+			BaseAddress = new Uri("http://localhost:5096")
+		};
+
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(httpClient);
+
+		// Act
+		await fizzBuzz.UpdateTokenMapWithAPIGeneratedData();
+
+		// Assert
+		Assert.Equal(mockTokens, fizzBuzz.GetTokenMap());
+
+	}
+
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMapWithAPIGeneratedData")]
+	public async Task UpdateTokenMapWithAPIGeneratedData_ThrowsException_WhenAPIReturnsNoData()
+	{
+		// Arrange
+		var mockResponse = new HttpResponseMessage(HttpStatusCode.OK)
+		{
+			Content = JsonContent.Create(new Dictionary<string, int>())
+		};
+
+		var mockHandler = new Mock<HttpMessageHandler>();
+
+		mockHandler
+			.Protected()
+			.Setup<Task<HttpResponseMessage>>(
+				"SendAsync",
+				ItExpr.IsAny<HttpRequestMessage>(),
+				ItExpr.IsAny<CancellationToken>()
+			)
+			.ReturnsAsync(mockResponse);
+
+		var httpClient = new HttpClient(mockHandler.Object)
+		{
+			BaseAddress = new Uri("http://localhost:5096")
+		};
+
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(httpClient);
+
+		// Act & Assert
+		await Assert.ThrowsAsync<Exception>(() => fizzBuzz.UpdateTokenMapWithAPIGeneratedData());
+	}
+
+	[Fact]
+	[Trait("TwistedFizzBuzz", "UpdateTokenMapWithAPIGeneratedData")]
+	public async Task UpdateTokenMapWithAPIGeneratedData_ThrowsException_WhenHttpRequestFails()
+	{
+		// Arrange
+		var mockResponse = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+
+		var mockHandler = new Mock<HttpMessageHandler>();
+
+		mockHandler
+			.Protected()
+			.Setup<Task<HttpResponseMessage>>(
+				"SendAsync",
+				ItExpr.IsAny<HttpRequestMessage>(),
+				ItExpr.IsAny<CancellationToken>()
+			)
+			.ReturnsAsync(mockResponse);
+
+		var httpClient = new HttpClient(mockHandler.Object)
+		{
+			BaseAddress = new Uri("http://localhost:5096")
+		};
+
+		ITwistedFizzBuzz fizzBuzz = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(httpClient);
+
+		// Act & Assert
+		await Assert.ThrowsAsync<HttpRequestException>(() => fizzBuzz.UpdateTokenMapWithAPIGeneratedData());
+	}
 }

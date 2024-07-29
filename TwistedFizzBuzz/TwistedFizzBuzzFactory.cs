@@ -4,8 +4,16 @@ namespace TwistedFizzBuzzLibrary;
 
 public static class TwistedFizzBuzzFactory
 {
-	public static ITwistedFizzBuzz CreateTwistedFizzBuzz()
+	public static ITwistedFizzBuzz CreateTwistedFizzBuzz(HttpClient? httpClient = null)
 	{
-		return new TwistedFizzBuzz();
+		if (httpClient == null)
+		{
+			httpClient = new HttpClient()
+			{
+				BaseAddress = new System.Uri("http://localhost:5096")
+			};
+		}
+
+		return new TwistedFizzBuzz(httpClient);
 	}
 }

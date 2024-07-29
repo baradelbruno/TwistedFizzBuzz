@@ -24,3 +24,6 @@
 /.vs
 /CustomFizzBuzz (ConsoleApp2)/bin/Debug/net8.0
 /CustomFizzBuzz (ConsoleApp2)/obj
+/FizzBuzzTokenAPI/bin/Debug/net8.0
+/FizzBuzzTokenAPI/obj/Debug/net8.0
+/FizzBuzzTokenAPI/obj

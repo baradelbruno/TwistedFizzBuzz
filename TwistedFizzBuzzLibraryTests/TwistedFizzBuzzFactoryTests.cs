@@ -5,12 +5,19 @@ namespace TwistedFizzBuzzLibraryTests;
 
 public class TwistedFizzBuzzFactoryTests
 {
+	private readonly HttpClient _httpClient;
+
+	public TwistedFizzBuzzFactoryTests()
+	{
+		_httpClient = new HttpClient();
+	}
+
 	[Fact]
 	[Trait("TwistedFizzBuzzFactory", "CreateTwistedFizzBuzz")]
 	public void CreateTwistedFizzBuzz_ShouldReturnInstanceSuccessfully()
 	{
 		// Arrange & Act
-		var result = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+		var result = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(_httpClient);
 
 		// Assert
 		Assert.NotNull(result);
@@ -21,8 +28,8 @@ public class TwistedFizzBuzzFactoryTests
 	public void CreateTwistedFizzBuzz_ShouldReturnDifferentInstances()
 	{
 		// Arrange & Act
-		var instance1 = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
-		var instance2 = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz();
+		var instance1 = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(_httpClient);
+		var instance2 = TwistedFizzBuzzFactory.CreateTwistedFizzBuzz(_httpClient);
 
 		// Assert
 		Assert.NotSame(instance1, instance2);
