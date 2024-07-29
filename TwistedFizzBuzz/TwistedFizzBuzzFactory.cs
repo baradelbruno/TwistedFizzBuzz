@@ -10,7 +10,7 @@ public static class TwistedFizzBuzzFactory
 		{
 			httpClient = new HttpClient()
 			{
-				BaseAddress = new System.Uri("http://localhost:5096")
+				BaseAddress = new Uri("http://localhost:5096")
 			};
 		}
 
