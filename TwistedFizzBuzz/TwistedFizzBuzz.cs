@@ -87,7 +87,7 @@ internal class TwistedFizzBuzz(HttpClient httpClient) : ITwistedFizzBuzz
 	{
 		try
 		{
-			//Calling my own API since the given API is not accessible. You can find the API implementation at API/FizzBuzzTokenAPI.
+			//Calling my own API since the given API is not accessible. You can find the API implementation at API/FizzBuzzTokenAPI and more information at the README file.
 			Dictionary<string, int>? retrievedTokens = await _httpClient.GetFromJsonAsync<Dictionary<string, int>>("http://localhost:5096/api/Tokens");
 
 			if (retrievedTokens is not null && retrievedTokens.Count > 0)
